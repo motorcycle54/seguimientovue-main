@@ -1,0 +1,33 @@
+
+<v-dialog v-model="openSeguimiento" persistent>
+  <v-card >
+    <v-card-title class="dialog-title d-flex align-center justify-space-between">
+      SEGUIMIENTO DE DOCUMENTOS
+      <span class="d-flex row">
+        <v-btn variant="outlined" icon color="info" @click="openExternoSeguimiento()">
+          <v-icon>mdi-dock-window</v-icon>
+        </v-btn>
+        <v-btn variant="outlined" icon color="info" @click="closeSeguimiento()">
+          <v-icon>mdi-close-thick</v-icon>
+          
+        </v-btn>
+      </span>
+    </v-card-title>
+    <v-card-text>
+      <time-line :data="destinos" @idDetalle="openDialogDetalle"></time-line>
+    </v-card-text>
+    <!-- <v-card-actions>
+      <v-btn color="info" block @click="closeSeguimiento()">CERRAR</v-btn>
+    </v-card-actions> -->
+  </v-card>
+</v-dialog>
+<v-dialog v-model="openDetalle" >
+  <v-card>
+    <v-card-text>
+      aqui el detalle {{dataDetalle}}
+    </v-card-text>
+    <v-card-actions>
+      <v-btn color="info" block @click="openDetalle = false">Close Dialog</v-btn>
+    </v-card-actions>
+  </v-card>
+</v-dialog>

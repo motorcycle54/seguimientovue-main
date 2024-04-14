@@ -1,0 +1,27 @@
+<template v-for="(destino, i) in destinos" :key="i">
+    <v-timeline-item :dot-color="'green'" size="small" :icon="'mdi-folder-outline'" fill-dot>
+      <template v-slot:opposite>
+        <div :class="`pt-1 headline font-weight-bold text-green`" v-text="destino.fecha"></div>
+        <v-list-item lines="two" :class="`mt-n1 headline font-weight-light mb-4 text-green`">
+          <v-list-item-header>
+            <v-list-item-title>{{destino.titulo}}</v-list-item-title>
+            <v-list-item-subtitle>{{destino.subtitulo}}</v-list-item-subtitle>
+          </v-list-item-header>
+        </v-list-item>
+      </template>
+      <div>
+        <v-list-item lines="two">
+          <v-list-item-header>
+            <v-list-item-subtitle>
+              {{destino.dependencia}}
+            </v-list-item-subtitle>
+            <v-list-item-subtitle>
+              {{destino.importancia}}
+            </v-list-item-subtitle>
+          </v-list-item-header>
+        </v-list-item>
+  
+      </div>
+    </v-timeline-item>
+    <time-line-item :data="destino.data" ></time-line-item>
+  </template>

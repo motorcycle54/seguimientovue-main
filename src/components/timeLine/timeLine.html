@@ -1,0 +1,45 @@
+<template v-for="(destino, i) in data" :key="i">
+  <div class="d-flex rows align-center">
+    <v-icon style="font-size: 30px; padding-right: 15px;" color="#FF0000" end icon="mdi-file-pdf">
+    </v-icon>
+    <v-list-item @click="openDetalle(destino)" lines="two" :class="`mt-n1 headline font-weight-light text-green`">
+      <v-list-item-header >
+        <v-list-item-title>{{destino.fecha}} -- {{destino.titulo}}</v-list-item-title>
+        <v-list-item-subtitle>{{destino.subtitulo}}</v-list-item-subtitle>
+      </v-list-item-header>
+    </v-list-item>
+  </div>  
+  <v-timeline class="line-time"  >
+    <v-timeline-item :dot-color="'#4caf6aa1'" size="small"  fill-dot>
+      <template v-slot:opposite >
+        <v-icon @click="openClose(i, destino)"  :icon="showRow[i] ? 'mdi-file-upload-outline' : 'mdi-file-send-outline'"></v-icon>
+        <!-- <div @click="openClose(i)" :class="`pt-1 headline font-weight-bold text-green`" v-text="destino.fecha"></div> -->
+      </template>
+      <div class="d-flex rows align-center">
+        <v-icon v-if="destino.tipo == 'carpeta'" @click="openClose(i, destino)" style="font-size: 24px;" color="rgb(150 150 95)" end :icon="showRow[i] ? 'mdi-folder-open' : 'mdi-folder'"></v-icon>
+        <v-icon v-if="destino.tipo == 'documento'" style="font-size: 24px;" color="green" end icon="mdi-file-send-outline"></v-icon>
+        <v-list-item lines="two">
+          <v-list-item-header >
+            <v-list-item-subtitle>
+              {{destino.dependencia}}
+            </v-list-item-subtitle>
+            <v-list-item-subtitle>
+              <p style="font-size: 12px;">{{destino.importancia}}</p>
+            </v-list-item-subtitle>
+          </v-list-item-header>
+        </v-list-item>       
+        
+      </div>
+      <v-expand-transition>
+        <div v-show="showRow[i]">
+          <time-line v-if="destino.data" :data="destino.data" @idDetalle="openDetalle"></time-line>
+          <!-- <time-line v-if="!destino.data" :data="" @idDetalle="openDetalle"></time-line> -->
+          
+          <time-line v-if="destino.completeData" :data="destino.completeData" @idDetalle="openDetalle"></time-line>
+        </div>
+        
+      </v-expand-transition>
+    </v-timeline-item>
+  </v-timeline>
+
+</template>

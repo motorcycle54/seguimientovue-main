@@ -1,0 +1,17 @@
+
+    <v-card style="height: 100vh; padding: 30px 0;">
+      
+      <v-card-text>
+        <time-line :data="destinos" @idDetalle="openDialogDetalle"></time-line>
+      </v-card-text>
+    </v-card>
+  <v-dialog v-model="openDetalle" >
+    <v-card>
+      <v-card-text>
+        aqui el detalle 
+      </v-card-text>
+      <v-card-actions>
+        <v-btn color="info" block @click="openDetalle = false">Close Dialog</v-btn>
+      </v-card-actions>
+    </v-card>
+  </v-dialog>
